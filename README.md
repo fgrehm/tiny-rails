@@ -4,15 +4,7 @@ TODO: Write a gem description
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'tiny-rails'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it using:
 
     $ gem install tiny-rails
 
