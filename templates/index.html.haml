@@ -1,16 +1,10 @@
 !!! 5
 %head
-  %title Password confirmation
+  %title TinyRailsApp
   %meta{ charset: "utf-8" }
 
   = stylesheet_link_tag    'application'
   = javascript_include_tag 'application'
 
 %body
-  #page-loaded
-  = form_for(@model, :url => '/', :validate => true) do |f|
-    = f.label :password
-    = f.password_field :password
-
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
+  Loading...

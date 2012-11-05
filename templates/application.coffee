@@ -1,4 +1,6 @@
 #= require jquery
 
 jQuery ($) ->
-  $('#page-loaded').html('Page loaded!')
+  setTimeout ->
+    $('body').html('<h1 id="loaded">Page loaded!</h1>')
+  , 1500

@@ -13,5 +13,4 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'sass-rails'
-
 gem 'coffee-rails'
