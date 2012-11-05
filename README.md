@@ -1,6 +1,7 @@
 # TinyRails
 
-TODO: Write a gem description
+Scaffold for tiny Rails apps based on José Valim's Rails Lightweight Stack
+[code](https://gist.github.com/1942658)
 
 ## Installation
 
@@ -10,7 +11,24 @@ Install it using:
 
 ## Usage
 
-TODO: Write usage instructions here
+```terminal
+$ tiny-rails tiny-app
+      create  tiny-app/application.coffee
+      create  tiny-app/application.scss
+      create  tiny-app/boot.rb
+      create  tiny-app/config.ru
+      create  tiny-app/Gemfile
+      create  tiny-app/index.html.haml
+      create  tiny-app/migrate
+      create  tiny-app/models.rb
+      create  tiny-app/server
+      create  tiny-app/tiny_rails_controller.rb
+      create  tiny-app/.gitignore
+       chmod  tiny-app/migrate
+       chmod  tiny-app/server
+```
+
+More info coming out soon...
 
 ## Contributing
 
