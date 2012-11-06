@@ -1,6 +1,8 @@
 require 'thor'
 require 'thor/group'
 
+require 'fileutils'
+
 module TinyRails
   class CLI < Thor::Group
     include Thor::Actions
@@ -38,12 +40,18 @@ module TinyRails
       )
     end
 
+    def create_root
+      self.destination_root = File.expand_path(app_path)
+      empty_directory '.'
+      FileUtils.cd destination_root
+    end
+
     def scaffold
       self.class.templates.each do |template|
-        template(template, "#{app_path}/#{template}")
+        template(template)
       end
       self.class.executables.each do |script|
-        chmod "#{app_path}/#{script}", 0755
+        chmod script, 0755
       end
     end
   end

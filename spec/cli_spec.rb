@@ -10,11 +10,11 @@ describe TinyRails::CLI do
     end
 
     described_class.templates.each do |file|
-      it { should =~ /create\s+\.tmp\/#{Regexp.escape file}/ }
+      it { should =~ /create\s+#{Regexp.escape file}/ }
     end
 
     described_class.executables.each do |script|
-      it { should =~ /chmod\s+\.tmp\/#{Regexp.escape script}/ }
+      it { should =~ /chmod\s+#{Regexp.escape script}/ }
     end
   end
 end
