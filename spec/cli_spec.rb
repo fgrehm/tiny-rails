@@ -9,12 +9,18 @@ describe TinyRails::CLI do
       output.gsub(/\e\[(\d+)m/, '')
     end
 
-    described_class.templates.each do |file|
+    %w(
+      .gitignore
+      Gemfile
+      boot.rb
+      tiny_rails_controller.rb
+      index.html.erb
+      server
+      config.ru
+    ).each do |file|
       it { should =~ /create\s+#{Regexp.escape file}/ }
     end
 
-    described_class.executables.each do |script|
-      it { should =~ /chmod\s+#{Regexp.escape script}/ }
-    end
+    it { should =~ /chmod\s+server/ }
   end
 end

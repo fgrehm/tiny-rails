@@ -19,24 +19,13 @@ module TinyRails
 
     def self.templates
       @templates ||= %w(
-        application.coffee
-        application.scss
-        boot.rb
-        config.ru
-        Gemfile
-        index.html.haml
-        migrate
-        models.rb
-        server
-        tiny_rails_controller.rb
         .gitignore
-      )
-    end
-
-    def self.executables
-      @executables ||= %w(
-        migrate
+        Gemfile
+        boot.rb
+        tiny_rails_controller.rb
+        index.html.erb
         server
+        config.ru
       )
     end
 
@@ -50,9 +39,7 @@ module TinyRails
       self.class.templates.each do |template|
         template(template)
       end
-      self.class.executables.each do |script|
-        chmod script, 0755
-      end
+      chmod 'server', 0755
     end
   end
 end

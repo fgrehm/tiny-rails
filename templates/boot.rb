@@ -25,17 +25,18 @@ class TinyRailsApp < Rails::Application
   config.assets.paths << File.dirname(__FILE__)
 
 
-  def config.database_configuration
-    {
-      'development' =>
-        {
-          'adapter'  => 'sqlite3',
-          'database' => 'db.sqlite3',
-          'pool'     => 5,
-          'timeout'  => 5000
-        }
-    }
-  end
+  # TODO: Configure database if activerecord if added
+  #def config.database_configuration
+  #  {
+  #    'development' =>
+  #      {
+  #        'adapter'  => 'sqlite3',
+  #        'database' => 'db.sqlite3',
+  #        'pool'     => 5,
+  #        'timeout'  => 5000
+  #      }
+  #  }
+  #end
 
   config.middleware.delete "Rack::Lock"
   config.middleware.delete "ActionDispatch::Flash"
