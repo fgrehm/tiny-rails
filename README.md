@@ -13,19 +13,15 @@ Install it using:
 
 ```terminal
 $ tiny-rails tiny-app
-      create  tiny-app/application.coffee
-      create  tiny-app/application.scss
-      create  tiny-app/boot.rb
-      create  tiny-app/config.ru
-      create  tiny-app/Gemfile
-      create  tiny-app/index.html.haml
-      create  tiny-app/migrate
-      create  tiny-app/models.rb
-      create  tiny-app/server
-      create  tiny-app/tiny_rails_controller.rb
-      create  tiny-app/.gitignore
-       chmod  tiny-app/migrate
-       chmod  tiny-app/server
+      create
+      create  .gitignore
+      create  Gemfile
+      create  boot.rb
+      create  tiny_rails_controller.rb
+      create  index.html.erb
+      create  server
+      create  config.ru
+       chmod  server
 ```
 
 More info coming out soon...
