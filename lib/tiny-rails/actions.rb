@@ -19,7 +19,7 @@ module TinyRails
       end
       message = options[:git] if options[:git]
 
-      log :gemfile, message
+      say_status :gemfile, message
 
       options.each do |option, value|
         parts << "#{option}: #{value.inspect}"
@@ -66,18 +66,6 @@ CONFIG
         array.pop
       else
         {}
-      end
-    end
-
-    # Define log for backwards compatibility. If just one argument is sent,
-    # invoke say, otherwise invoke say_status. Differently from say and
-    # similarly to say_status, this method respects the quiet? option given.
-    def log(*args)
-      if args.size == 1
-        say args.first.to_s unless options.quiet?
-      else
-        args << (self.behavior == :invoke ? :green : :red)
-        say_status(*args)
       end
     end
   end
