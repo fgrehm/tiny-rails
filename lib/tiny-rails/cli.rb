@@ -3,6 +3,8 @@ require 'thor/group'
 
 require 'fileutils'
 
+require 'tiny-rails/actions'
+
 module TinyRails
   class CLI < Thor::Group
     include Thor::Actions
