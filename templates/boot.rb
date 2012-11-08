@@ -14,19 +14,13 @@ class TinyRailsApp < Rails::Application
     match "/favicon.ico", :to => proc {|env| [200, {}, [""]] }
   end
 
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
 
   config.active_support.deprecation = :log
 
   config.autoload_paths << config.root
 
-  # TODO: Extract an action
-  #config.assets.enabled = true
-  #config.assets.debug = true
-  #config.assets.paths << File.dirname(__FILE__)
-
-
-  # TODO: Configure database if activerecord if added
+  # TODO: Extract add-on action
   #def config.database_configuration
   #  {
   #    'development' =>
