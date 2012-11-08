@@ -55,7 +55,7 @@ describe TinyRails::Actions do
   describe '#application' do
     let(:boot_rb) { File.read 'boot.rb' }
 
-    before  { action :create_file, 'boot.rb', "class TinyRailsApp < Rails::Application\nend" }
+    before { action :create_file, 'boot.rb', "class TinyRailsApp < Rails::Application\nend" }
 
     it 'includes data in TinyRailsApp definition' do
       assets_enable = 'config.assets.enabled = true'
@@ -71,6 +71,32 @@ describe TinyRails::Actions do
 
       boot_rb.should =~ /# This will be added/
       boot_rb.should_not =~ /# This wont be added/
+    end
+  end
+
+  describe '#enable_asset_pipeline!' do
+    let(:boot_rb) { File.read 'boot.rb' }
+
+    before do
+      action :create_file, 'boot.rb', "class TinyRailsApp < Rails::Application\nend"
+      action :enable_asset_pipeline!
+    end
+
+    it 'enables asset pipeline on boot.rb' do
+      boot_rb.should =~ /^  config\.assets\.enabled = true$/
+    end
+
+    it 'sets debugging to true' do
+      boot_rb.should =~ /^  config\.assets\.debug   = true$/
+    end
+
+    it 'appends application root folder to assets path' do
+      boot_rb.should =~ /^  config\.assets\.paths << File\.dirname\(__FILE__\)$/
+    end
+
+    it 'does not duplicate configs' do
+      10.times { action :enable_asset_pipeline! }
+      boot_rb.should have_a_single_occurence_of('config.assets.enabled = true')
     end
   end
 end

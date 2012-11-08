@@ -46,6 +46,18 @@ module TinyRails
       end
     end
 
+    # Self explanatory :P
+    def enable_asset_pipeline!
+      return if File.read('boot.rb') =~ /^  config\.assets\.enabled = true$/
+
+      code = <<-CONFIG
+  config.assets.enabled = true
+  config.assets.debug   = true
+  config.assets.paths << File.dirname(__FILE__)
+CONFIG
+      application "\n#{code}"
+    end
+
     private
 
     # From ActiveSupport's Array#extract_options!
