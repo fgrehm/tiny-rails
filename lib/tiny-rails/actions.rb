@@ -28,7 +28,7 @@ module TinyRails
       in_root do
         str = "gem #{parts.join(", ")}"
         str = "\n" + str
-        append_file "Gemfile", str, verbose: false
+        append_file "Gemfile", str, :verbose => false
       end
     end
 
@@ -37,12 +37,12 @@ module TinyRails
     #   application do
     #     "config.assets.enabled = true"
     #   end
-    def application(data=nil,  &block)
+    def application(data=nil, &block)
       sentinel = /class TinyRailsApp < Rails::Application/i
       data = block.call if !data && block_given?
 
       in_root do
-        inject_into_file 'boot.rb', "\n  #{data}", after: sentinel
+        inject_into_file 'boot.rb', "\n  #{data}", :after => sentinel
       end
     end
 
