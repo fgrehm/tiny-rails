@@ -20,9 +20,10 @@ class TinyRailsApp < Rails::Application
 
   config.autoload_paths << config.root
 
-  config.assets.enabled = true
-  config.assets.debug = true
-  config.assets.paths << File.dirname(__FILE__)
+  # TODO: Extract an action
+  #config.assets.enabled = true
+  #config.assets.debug = true
+  #config.assets.paths << File.dirname(__FILE__)
 
 
   # TODO: Configure database if activerecord if added
