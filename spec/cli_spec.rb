@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe TinyRails::CLI do
-  before { FileUtils.rm_rf '.tmp' if Dir.exist?('.tmp') }
+  before do
+    FileUtils.rm_rf '.tmp' if Dir.exist?('.tmp')
+    @original_wd = Dir.pwd
+  end
+
+  after { FileUtils.cd @original_wd }
 
   context 'scaffold' do
     subject do
@@ -22,5 +27,27 @@ describe TinyRails::CLI do
     end
 
     it { should =~ /chmod\s+server/ }
+  end
+
+  context 'add-ons' do
+    subject do
+      fixtures_path = "#{@original_wd}/spec/fixtures"
+      fixtures = %W( #{fixtures_path}/sample_addon_1.rb spec/fixtures/sample_addon_2.rb )
+      bundled_addon = 'activerecord'
+      output = capture(:stdout) { described_class.start(['.tmp', "-a", fixtures, bundled_addon].flatten) }
+      output.gsub(/\e\[(\d+)m/, '')
+    end
+
+    it 'works with full path to file' do
+      subject.should =~ /gemfile\s+from-sample-addon-1/
+    end
+
+    it 'works with relative path to file' do
+      subject.should =~ /gemfile\s+from-sample-addon-2/
+    end
+
+    it 'works with bundled addons' do
+      subject.should =~ /gemfile\s+activerecord/
+    end
   end
 end
