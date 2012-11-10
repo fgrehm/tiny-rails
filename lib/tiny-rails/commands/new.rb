@@ -10,10 +10,6 @@ module TinyRails
 
       argument :app_path, :required => true
 
-      class_option :addons, :type => :array,
-        :aliases => '-a',
-        :default => []
-
       # TODO: Move to a base command
       def self.source_root
         "#{File.expand_path('../../../../templates', __FILE__)}/"
@@ -46,10 +42,6 @@ module TinyRails
           template(template)
         end
         chmod 'server', 0755
-      end
-
-      def apply_addon_scripts
-        Add.start(options[:addons]) unless options[:addons].empty?
       end
     end
   end

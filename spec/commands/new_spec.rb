@@ -28,16 +28,4 @@ describe TinyRails::Commands::New do
 
     it { should =~ /chmod\s+server/ }
   end
-
-  context 'add-ons' do
-    it 'delegates addons arguments to Add comand' do
-      TinyRails::Commands::Add.should_receive(:start).with(['addon-1', 'addon-2'])
-      described_class.start(['.tmp', '-q', '-a', 'addon-1', 'addon-2'])
-    end
-
-    it 'does not invoke Add command if addons are suppressed' do
-      TinyRails::Commands::Add.should_not_receive(:start)
-      described_class.start(['.tmp', '-q'])
-    end
-  end
 end
