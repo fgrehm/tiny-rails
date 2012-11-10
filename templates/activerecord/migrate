@@ -2,8 +2,6 @@
 
 require './boot'
 
-# TODO: Alert that DB will be dropped
-
 def drop_database(config)
   case config['adapter']
   when /mysql/
@@ -21,6 +19,14 @@ def drop_database(config)
   end
 end
 
+def confirm_drop_db?
+  print 'We are going to drop and recreate the database, are you sure you want to proceed? [Y/n] '
+  answer = gets.chomp.downcase
+  answer.blank? || answer =~ /^y/
+end
+
+exit 0 unless confirm_drop_db?
+
 ActiveRecord::Base.configurations.each_value do |config|
   # Skip entries that don't have a database key
   next unless config['database']
@@ -32,7 +38,9 @@ ActiveRecord::Base.configurations.each_value do |config|
 end
 
 ActiveRecord::Schema.define do
-  create_table "accounts" do |t|
-    t.string "name"
+  create_table "posts" do |t|
+    t.string "title"
+    t.text   "body"
+    t.timestamps
   end
 end
