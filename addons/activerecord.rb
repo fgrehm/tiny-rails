@@ -2,7 +2,11 @@ gem 'activerecord', '~> 3.2'
 gem 'sqlite3'
 
 template 'activerecord/models.rb', 'models.rb'
-inject_into_file 'tiny_rails_controller.rb', "\n  require_dependency 'models'", :after => /class TinyRailsController < ActionController::Base/
+require_models_code = <<-CODE
+  # Enable code reloading for models
+  require_dependency 'models'
+CODE
+inject_into_file 'tiny_rails_controller.rb', "\n#{require_models_code}", :after => /class TinyRailsController < ActionController::Base/
 
 config_db_code = <<-CODE
   def config.database_configuration
