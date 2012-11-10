@@ -6,45 +6,33 @@ module TinyRails
       include Thor::Actions
       include Actions
 
+      add_runtime_options!
+
       argument :app_path, :required => true
 
-      # TODO: Think about a better name than addon
       class_option :addons, :type => :array,
         :aliases => '-a',
         :default => []
 
+      # TODO: Move to a base command
       def self.source_root
         "#{File.expand_path('../../../../templates', __FILE__)}/"
       end
 
       def self.banner
-        "tiny-rails #{self.arguments.map(&:usage).join(' ')} [options]"
+        "tiny-rails new #{self.arguments.map(&:usage).join(' ')} [options]"
       end
 
       def self.templates
         @templates ||= %w(
-        .gitignore
-        Gemfile
-        boot.rb
-        tiny_rails_controller.rb
-        index.html.erb
-        server
-        config.ru
+          .gitignore
+          Gemfile
+          boot.rb
+          tiny_rails_controller.rb
+          index.html.erb
+          server
+          config.ru
         )
-      end
-
-      def self.bundled_addons_path
-        @bundled_addons_path ||= "#{File.expand_path('../../../../addons', __FILE__)}"
-      end
-
-      def normalize_addon_paths
-        options[:addons].map! do |path|
-          if File.exist? "#{self.class.bundled_addons_path}/#{path}.rb"
-            "#{self.class.bundled_addons_path}/#{path}.rb"
-          else
-            File.expand_path(path)
-          end
-        end
       end
 
       def create_root
@@ -61,7 +49,7 @@ module TinyRails
       end
 
       def apply_addon_scripts
-        options[:addons].each { |script| apply script }
+        Add.start(options[:addons]) unless options[:addons].empty?
       end
     end
   end

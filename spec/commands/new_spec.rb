@@ -30,24 +30,14 @@ describe TinyRails::Commands::New do
   end
 
   context 'add-ons' do
-    subject do
-      fixtures_path = "#{@original_wd}/spec/fixtures"
-      fixtures = %W( #{fixtures_path}/sample_addon_1.rb spec/fixtures/sample_addon_2.rb )
-      bundled_addon = 'activerecord'
-      output = capture(:stdout) { described_class.start(['.tmp', "-a", fixtures, bundled_addon].flatten) }
-      output.gsub(/\e\[(\d+)m/, '')
+    it 'delegates addons arguments to Add comand' do
+      TinyRails::Commands::Add.should_receive(:start).with(['addon-1', 'addon-2'])
+      described_class.start(['.tmp', '-q', '-a', 'addon-1', 'addon-2'])
     end
 
-    it 'works with full path to file' do
-      subject.should =~ /gemfile\s+from-sample-addon-1/
-    end
-
-    it 'works with relative path to file' do
-      subject.should =~ /gemfile\s+from-sample-addon-2/
-    end
-
-    it 'works with bundled addons' do
-      subject.should =~ /gemfile\s+activerecord/
+    it 'does not invoke Add command if addons are suppressed' do
+      TinyRails::Commands::Add.should_not_receive(:start)
+      described_class.start(['.tmp', '-q'])
     end
   end
 end
