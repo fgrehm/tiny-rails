@@ -17,7 +17,8 @@ module TinyRails
     end
 
     desc 'add [addons]', 'Configures addons on a generated tiny Rails application'
-    def add(addons)
+    def add(addons = [])
+      addons = Array(addons)
       Commands::Add.start(addons)
     end
   end
