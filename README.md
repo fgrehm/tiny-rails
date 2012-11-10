@@ -12,7 +12,7 @@ Install it using:
 ## Usage
 
 ```terminal
-$ tiny-rails tiny-app
+$ tiny-rails new tiny-app
       create
       create  .gitignore
       create  Gemfile

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TinyRails::CLI do
+describe TinyRails::Commands::New do
   before do
     FileUtils.rm_rf '.tmp' if Dir.exist?('.tmp')
     @original_wd = Dir.pwd
