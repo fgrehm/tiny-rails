@@ -4,8 +4,6 @@ module TinyRails
       include Thor::Actions
       include Actions
 
-      add_runtime_options!
-
       argument :addons, :required => true, :type => :array
 
       def self.banner

@@ -6,8 +6,6 @@ module TinyRails
       include Thor::Actions
       include Actions
 
-      add_runtime_options!
-
       argument :app_path, :required => true
 
       # TODO: Move to a base command

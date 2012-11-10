@@ -1,5 +1,5 @@
 module TinyRails
-  # Based on Rails' https://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
+  # Kinda based on Rails' https://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
   module Actions
     # Adds an entry into Gemfile for the supplied gem.
     #
@@ -41,9 +41,7 @@ module TinyRails
       sentinel = /class TinyRailsApp < Rails::Application/i
       data = block.call if !data && block_given?
 
-      in_root do
-        inject_into_file 'boot.rb', "\n  #{data}", :after => sentinel
-      end
+      inject_into_file 'boot.rb', "\n  #{data}", :after => sentinel
     end
 
     # Self explanatory :P

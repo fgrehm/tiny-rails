@@ -7,6 +7,8 @@ require 'tiny-rails/commands/add'
 
 module TinyRails
   class CLI < Thor
+    include Thor::Actions
+
     desc 'new APP_PATH', 'Creates a new tiny Rails application'
     method_option :addons, :type => :array, :aliases => '-a', :default => []
     def new(app_path)

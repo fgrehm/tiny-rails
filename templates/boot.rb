@@ -20,19 +20,6 @@ class TinyRailsApp < Rails::Application
 
   config.autoload_paths << config.root
 
-  # TODO: Extract add-on action
-  #def config.database_configuration
-  #  {
-  #    'development' =>
-  #      {
-  #        'adapter'  => 'sqlite3',
-  #        'database' => 'db.sqlite3',
-  #        'pool'     => 5,
-  #        'timeout'  => 5000
-  #      }
-  #  }
-  #end
-
   config.middleware.delete "Rack::Lock"
   config.middleware.delete "ActionDispatch::Flash"
   config.middleware.delete "ActionDispatch::BestStandardsSupport"
