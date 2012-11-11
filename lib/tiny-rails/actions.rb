@@ -73,10 +73,17 @@ CONFIG
         File.expand_path(path)
       end
 
-      apply(path)
+      unless applied_addons.include?(path)
+        applied_addons << path
+        apply(path)
+      end
     end
 
     private
+
+    def applied_addons
+      @applied_addons ||= []
+    end
 
     # From ActiveSupport's Array#extract_options!
     def extract_options!(array)

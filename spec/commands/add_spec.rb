@@ -17,7 +17,7 @@ describe TinyRails::Commands::Add do
     fixtures_path = "#{@original_wd}/spec/fixtures"
     fixtures = %W( #{fixtures_path}/sample_addon_1.rb ../spec/fixtures/sample_addon_2.rb )
     bundled_addon = 'activerecord'
-    output = capture(:stdout) { described_class.start([fixtures, bundled_addon].flatten) }
+    output = capture(:stdout) { described_class.start([fixtures, bundled_addon, bundled_addon].flatten) }
     output.gsub(/\e\[(\d+)m/, '')
   end
 
@@ -31,5 +31,9 @@ describe TinyRails::Commands::Add do
 
   it 'works with bundled addons' do
     output.should =~ /gemfile\s+activerecord/
+  end
+
+  it 'applies addon scripts only once' do
+    output.scan(/gemfile\s+activerecord/).should have(1).item
   end
 end
