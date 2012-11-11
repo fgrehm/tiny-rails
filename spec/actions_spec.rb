@@ -55,12 +55,12 @@ describe TinyRails::Actions do
   describe '#application' do
     let(:boot_rb) { File.read 'boot.rb' }
 
-    before { action :create_file, 'boot.rb', "class TinyRailsApp < Rails::Application\nend" }
+    before { action :create_file, 'boot.rb', "class TinyRailsApp\n  config.secret_token = 'something'\nend" }
 
     it 'includes data in TinyRailsApp definition' do
-      assets_enable = 'config.assets.enabled = true'
+      assets_enable = '  config.assets.enabled = true'
       action :application, assets_enable
-      boot_rb.should =~ /class TinyRailsApp < Rails::Application\n  #{Regexp.escape(assets_enable)}/
+      boot_rb.should =~ /class TinyRailsApp\n  config\.secret_token = 'something'\n\n#{Regexp.escape(assets_enable)}/
     end
 
     it 'includes provided block contents in TinyRailsApp definition' do
@@ -78,7 +78,7 @@ describe TinyRails::Actions do
     let(:boot_rb) { File.read 'boot.rb' }
 
     before do
-      action :create_file, 'boot.rb', "class TinyRailsApp < Rails::Application\nend"
+      action :create_file, 'boot.rb', "class TinyRailsApp\n  config.secret_token = 'something'\nend"
       action :enable_asset_pipeline!
     end
 

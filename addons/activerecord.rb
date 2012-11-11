@@ -8,7 +8,9 @@ require_models_code = <<-CODE
 CODE
 inject_into_file 'tiny_rails_controller.rb', "\n#{require_models_code}", :after => /class TinyRailsController < ActionController::Base/
 
-config_db_code = <<-CODE
+application <<-CODE
+  # We need to override the configuration method here, otherwise Rails will
+  # try to load the yaml configuration file at config/database.yml
   def config.database_configuration
     {
       'development' =>
@@ -21,7 +23,6 @@ config_db_code = <<-CODE
     }
   end
 CODE
-application "\n#{config_db_code}"
 
 template 'activerecord/migrate', 'migrate'
 chmod 'migrate', 0755

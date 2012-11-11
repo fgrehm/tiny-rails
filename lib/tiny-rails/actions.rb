@@ -32,16 +32,18 @@ module TinyRails
       end
     end
 
-    # Adds a line inside the Application class on boot.rb.
+    # Appends a line inside the TinyRailsApp class on boot.rb.
     #
     #   application do
     #     "config.assets.enabled = true"
     #   end
     def application(data=nil, &block)
-      sentinel = /class TinyRailsApp < Rails::Application/i
       data = block.call if !data && block_given?
 
-      inject_into_file 'boot.rb', "\n  #{data}", :after => sentinel
+      data = "\n#{data}" unless data =~ /^\n/
+      data << "\n" unless data =~ /\n$/
+
+      inject_into_file 'boot.rb', data, :after => /^  config\.secret_token = .+\n/
     end
 
     def initializer(data)
@@ -56,12 +58,12 @@ module TinyRails
     def enable_asset_pipeline!
       return if File.read('boot.rb') =~ /^  config\.assets\.enabled = true$/
 
-      code = <<-CONFIG
+      application <<-CONFIG
+  # Enable asset pipeline
   config.assets.enabled = true
   config.assets.debug   = true
   config.assets.paths << File.dirname(__FILE__)
 CONFIG
-      application "\n#{code}"
     end
 
     def addon(path)
