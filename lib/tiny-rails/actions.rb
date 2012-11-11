@@ -56,6 +56,18 @@ CONFIG
       application "\n#{code}"
     end
 
+    def addon(path)
+      path = if URI(path).is_a?(URI::HTTP)
+        path
+      elsif File.exist? "#{self.class.bundled_addons_path}/#{path}.rb"
+        "#{self.class.bundled_addons_path}/#{path}.rb"
+      else
+        File.expand_path(path)
+      end
+
+      apply(path)
+    end
+
     private
 
     # From ActiveSupport's Array#extract_options!

@@ -26,20 +26,8 @@ module TinyRails
         end
       end
 
-      def normalize_addon_paths
-        addons.map! do |path|
-          if URI(path).is_a?(URI::HTTP)
-            path
-          elsif File.exist? "#{self.class.bundled_addons_path}/#{path}.rb"
-            "#{self.class.bundled_addons_path}/#{path}.rb"
-          else
-            File.expand_path(path)
-          end
-        end
-      end
-
       def apply_addon_scripts
-        addons.each{ |addon| apply addon}
+        addons.each{ |script| addon(script) }
       end
     end
   end
