@@ -102,9 +102,11 @@ describe TinyRails::Actions do
 
   describe '#initializer' do
     let(:initializers_rb) { File.read 'initializers.rb' }
+    let(:remote_code)     { StringIO.new('remote code') }
 
     before do
       action :initializer, '# Ruby code...'
+      generator.stub(:open).and_yield(remote_code)
     end
 
     it 'creates an initializers.rb file if it doesnt exist' do
@@ -114,6 +116,11 @@ describe TinyRails::Actions do
     it 'appends to initializers.rb file if file exist' do
       action :initializer, '# More code...'
       initializers_rb.should =~ /\n# More code.../
+    end
+
+    it 'supports appending a remote file' do
+      action :initializer, 'http://path.to/gist'
+      initializers_rb.should =~ /\nremote code/
     end
   end
 end

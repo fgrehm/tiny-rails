@@ -47,6 +47,8 @@ module TinyRails
     end
 
     def initializer(data)
+      data = open(data) { |io| io.read } if data =~ /https?:\/\//
+
       if File.exists? 'initializers.rb'
         append_file 'initializers.rb', "\n#{data}"
       else
