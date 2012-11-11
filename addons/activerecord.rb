@@ -6,7 +6,7 @@ require_models_code = <<-CODE
   # Enable code reloading for models
   require_dependency 'models'
 CODE
-inject_into_file 'tiny_rails_controller.rb', "\n#{require_models_code}", :after => /class TinyRailsController < ActionController::Base/
+inject_into_file 'application_controller.rb', "\n#{require_models_code}", :after => /class ApplicationController < ActionController::Base/
 
 application <<-CODE
   # We need to override the configuration method here, otherwise Rails will

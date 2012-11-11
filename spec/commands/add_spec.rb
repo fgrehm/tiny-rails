@@ -6,7 +6,7 @@ describe TinyRails::Commands::Add do
     Dir.exist?('.tmp') ? FileUtils.rm_rf('.tmp/*') : Dir.mkdir('.tmp')
     @original_wd = Dir.pwd
     FileUtils.cd '.tmp'
-    %w(.gitignore tiny_rails_controller.rb boot.rb Gemfile).each do |file|
+    %w(.gitignore application_controller.rb boot.rb Gemfile).each do |file|
       `touch #{file}`
     end
   end

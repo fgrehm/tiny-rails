@@ -18,7 +18,7 @@ describe TinyRails::Commands::New do
       .gitignore
       Gemfile
       boot.rb
-      tiny_rails_controller.rb
+      application_controller.rb
       index.html.erb
       server
       config.ru
