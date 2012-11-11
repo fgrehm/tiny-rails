@@ -3,10 +3,11 @@ require 'spec_helper'
 describe TinyRails::Commands::Add do
   before do
     Dir.exist?('.tmp') ? FileUtils.rm_rf('.tmp/*') : Dir.mkdir('.tmp')
-    FileUtils.cp Dir["#{Dir.pwd}/spec/fixtures/sample_app/*"], '.tmp'
     @original_wd = Dir.pwd
     FileUtils.cd '.tmp'
-    `touch .gitignore`
+    %w(.gitignore tiny_rails_controller.rb boot.rb Gemfile).each do |file|
+      `touch #{file}`
+    end
   end
 
   after { FileUtils.cd @original_wd }
