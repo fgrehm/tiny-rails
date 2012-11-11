@@ -44,6 +44,14 @@ module TinyRails
       inject_into_file 'boot.rb', "\n  #{data}", :after => sentinel
     end
 
+    def initializer(data)
+      if File.exists? 'initializers.rb'
+        append_file 'initializers.rb', "\n#{data}"
+      else
+        create_file 'initializers.rb', data
+      end
+    end
+
     # Self explanatory :P
     def enable_asset_pipeline!
       return if File.read('boot.rb') =~ /^  config\.assets\.enabled = true$/

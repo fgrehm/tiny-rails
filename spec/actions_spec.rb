@@ -99,4 +99,21 @@ describe TinyRails::Actions do
       boot_rb.should have_a_single_occurence_of('config.assets.enabled = true')
     end
   end
+
+  describe '#initializer' do
+    let(:initializers_rb) { File.read 'initializers.rb' }
+
+    before do
+      action :initializer, '# Ruby code...'
+    end
+
+    it 'creates an initializers.rb file if it doesnt exist' do
+      initializers_rb.should == "# Ruby code..."
+    end
+
+    it 'appends to initializers.rb file if file exist' do
+      action :initializer, '# More code...'
+      initializers_rb.should =~ /\n# More code.../
+    end
+  end
 end

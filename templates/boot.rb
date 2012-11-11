@@ -30,3 +30,5 @@ class TinyRailsApp < Rails::Application
 end
 
 TinyRailsApp.initialize!
+
+require 'initializers' if File.exists?('initializers.rb')
