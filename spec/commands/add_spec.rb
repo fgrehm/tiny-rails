@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe TinyRails::Commands::Add do
-  let(:addon) { StringIO.new('gem "sample-gem"') }
-
   before do
     Dir.exist?('.tmp') ? FileUtils.rm_rf('.tmp/*') : Dir.mkdir('.tmp')
     FileUtils.cp Dir["#{Dir.pwd}/spec/fixtures/sample_app/*"], '.tmp'
     @original_wd = Dir.pwd
     FileUtils.cd '.tmp'
+    `touch .gitignore`
   end
 
   after { FileUtils.cd @original_wd }
