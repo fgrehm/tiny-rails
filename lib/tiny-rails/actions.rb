@@ -59,7 +59,13 @@ module TinyRails
     def migration(data)
       data << "\n" unless data =~ /\n$/
 
-      inject_into_file 'migrate', data, :after => /^ActiveRecord::Schema.define do\n/
+      inject_into_file 'migrate', data, :after => /^ActiveRecord::Schema\.define do\n/
+    end
+
+    def route(new_route)
+      new_route << "\n" unless new_route =~ /\n$/
+
+      inject_into_file 'boot.rb', new_route, :after => /routes.append do\n/
     end
 
     # Self explanatory :P

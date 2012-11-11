@@ -74,6 +74,20 @@ describe TinyRails::Actions do
     end
   end
 
+  describe '#route' do
+    let(:boot_rb) { File.read 'boot.rb' }
+
+    before do
+      action :create_file, 'boot.rb', "  routes.append do\n  end"
+    end
+
+    it 'includes data in routes definitions' do
+      new_route = '    match "foo" => "tiny_rails#bar"'
+      action :route, new_route
+      boot_rb.should =~ /  routes\.append do\n#{Regexp.escape(new_route)}  end/
+    end
+  end
+
   describe '#enable_asset_pipeline!' do
     let(:boot_rb) { File.read 'boot.rb' }
 
