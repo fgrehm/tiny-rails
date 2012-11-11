@@ -9,11 +9,6 @@ require "rails/all"
 Bundler.require :default
 
 class TinyRailsApp < Rails::Application
-  routes.append do
-    match "/" => "tiny_rails#index"
-    match "/favicon.ico", :to => proc {|env| [200, {}, [""]] }
-  end
-
   config.consider_all_requests_local = true
 
   config.active_support.deprecation = :log
@@ -32,3 +27,8 @@ end
 TinyRailsApp.initialize!
 
 require 'initializers' if File.exists?('initializers.rb')
+
+TinyRailsApp.routes.draw do
+  match "/" => "tiny_rails#index"
+  match "/favicon.ico", :to => proc {|env| [200, {}, [""]] }
+end

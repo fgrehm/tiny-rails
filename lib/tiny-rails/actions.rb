@@ -65,7 +65,7 @@ module TinyRails
     def route(new_route)
       new_route << "\n" unless new_route =~ /\n$/
 
-      inject_into_file 'boot.rb', new_route, :after => /routes.append do\n/
+      inject_into_file 'boot.rb', new_route, :after => /TinyRailsApp\.routes\.draw do\n/
     end
 
     # Self explanatory :P
