@@ -54,6 +54,9 @@ folder.
 Here's a list of the addons bundled with the gem:
 
 * [activerecord](https://github.com/fgrehm/tiny-rails/blob/master/addons/activerecord.rb)
+* [coffeescript](https://github.com/fgrehm/tiny-rails/blob/master/addons/coffeescript.rb)
+* [jquery](https://github.com/fgrehm/tiny-rails/blob/master/addons/jquery.rb)
+* [client_side_validations](https://github.com/fgrehm/tiny-rails/blob/master/addons/client_side_validations.rb)
 
 
 ### Building your own addon
