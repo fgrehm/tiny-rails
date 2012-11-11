@@ -123,4 +123,17 @@ describe TinyRails::Actions do
       initializers_rb.should =~ /\nremote code/
     end
   end
+
+  describe '#migration' do
+    let(:migrate) { File.read 'migrate' }
+
+    before do
+      action :create_file, 'migrate', "ActiveRecord::Schema.define do\nend"
+      action :migration, '  create_table :users'
+    end
+
+    it 'appends to schema definition on migrate file' do
+      migrate.should =~ /ActiveRecord::Schema.define do\n  create_table :users\nend/
+    end
+  end
 end

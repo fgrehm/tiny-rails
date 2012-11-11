@@ -56,6 +56,12 @@ module TinyRails
       end
     end
 
+    def migration(data)
+      data << "\n" unless data =~ /\n$/
+
+      inject_into_file 'migrate', data, :after => /^ActiveRecord::Schema.define do\n/
+    end
+
     # Self explanatory :P
     def enable_asset_pipeline!
       return if File.read('boot.rb') =~ /^  config\.assets\.enabled = true$/
