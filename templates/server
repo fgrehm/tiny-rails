@@ -2,15 +2,6 @@
 
 require './boot'
 
-if ARGV[0] == '-v' || ARGV[0] == '--verbose'
-  puts ">> Starting Rails lightweight stack"
-  Rails.configuration.middleware.each do |middleware|
-    puts "use #{middleware.inspect}"
-  end
-  puts "run #{Rails.application.class.name}.routes"
-end
-
-
 options = {
   :environment => nil,
   :pid         => nil,
