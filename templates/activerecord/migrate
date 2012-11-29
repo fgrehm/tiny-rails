@@ -8,20 +8,20 @@ def confirm_drop_db?
   answer.blank? || answer =~ /^y/
 end
 
-exit 0 unless confirm_drop_db?
-
 config = TinyRailsApp.config.database_configuration[Rails.env]
 
-# DROP DATABASE
 require 'pathname'
 path = Pathname.new(config['database'])
 file = path.absolute? ? path.to_s : File.join(Rails.root, path)
-FileUtils.rm(file)
 
-# CREATE DATABASE
+exit 0 if File.exist?(file) && confirm_drop_db?
+
+# "Drop" database
+FileUtils.rm(file) if File.exist?(file)
+
+# Creates database
 ActiveRecord::Base.establish_connection(config)
 ActiveRecord::Base.connection
-
 
 ActiveRecord::Schema.define do
   create_table "posts" do |t|
