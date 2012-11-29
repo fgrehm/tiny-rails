@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-# TODO: Move these specs to spec/actions_spec.rb
 describe TinyRails::Commands::Add do
   before do
     Dir.exist?('.tmp') ? FileUtils.rm_rf('.tmp/*') : Dir.mkdir('.tmp')

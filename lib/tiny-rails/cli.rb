@@ -2,8 +2,9 @@ require 'thor'
 require 'thor/group'
 
 require 'tiny-rails/actions'
-require 'tiny-rails/commands/new'
 require 'tiny-rails/commands/add'
+require 'tiny-rails/commands/console'
+require 'tiny-rails/commands/new'
 
 module TinyRails
   class CLI < Thor
@@ -20,6 +21,11 @@ module TinyRails
     def add(addons = [])
       addons = Array(addons)
       Commands::Add.start(addons)
+    end
+
+    desc 'console', 'Starts the tiny-rails console'
+    def console
+      Commands::Console.start
     end
   end
 end
