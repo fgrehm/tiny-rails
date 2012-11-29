@@ -3,11 +3,25 @@
 Scaffold for tiny Rails apps based on José Valim's Rails Lightweight Stack
 [code](https://gist.github.com/1942658)
 
+
 ## Installation
 
 Install it using:
 
     $ gem install tiny-rails
+
+
+## WTF?! Why would I use this?
+
+Although the generated application code could be used on a production server,
+the idea is to try to give you a really basic application to try out new Rails
+gems, create spikes and to provide an isolated small Rails environment for
+reproducing bugs to support bug reports.
+
+You could also use this to create a single page application with all rails
+features like code reloading and the asset pipeline without having to set up
+a Sinatra application from the ground app.
+
 
 ## Usage
 
