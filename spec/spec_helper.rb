@@ -1,6 +1,8 @@
 require 'tiny-rails'
 require 'tiny-rails/cli'
 
+require 'rspec-spies'
+
 Dir['./spec/support/**/*.rb'].each { |file| require file }
 
 RSpec.configure do |config|
