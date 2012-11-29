@@ -42,6 +42,10 @@ This will give you a pretty basic application that you can run with `rackup`
 or you prefferend server. It even supports code reloading for the generated
 controller!
 
+You can also fire up a console to play around with the generated app running
+`tiny-rails console`. If you want to use Pry, you can just add the `pry-rails`
+gem to your Gemfile.
+
 
 ## Addons
 
