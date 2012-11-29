@@ -29,6 +29,6 @@ require 'initializers' if File.exists?('initializers.rb')
 TinyRailsApp.initialize!
 
 TinyRailsApp.routes.draw do
-  match "/" => "tiny_rails#index"
+  match "/" => "application#index"
   match "/favicon.ico", :to => proc {|env| [200, {}, [""]] }
 end
