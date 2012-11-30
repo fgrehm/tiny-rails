@@ -39,8 +39,8 @@ $ tiny-rails new tiny-app
 ```
 
 This will give you a pretty basic application that you can run with `rackup`
-or you prefferend server. It even supports code reloading for the generated
-controller!
+or you preferred server. It even supports code reloading for the generated
+controller, models and mailers!
 
 You can also fire up a console to play around with the generated app running
 `tiny-rails console`. If you want to use Pry, you can just add the `pry-rails`
