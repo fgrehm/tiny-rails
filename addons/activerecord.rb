@@ -2,6 +2,7 @@ gem 'activerecord', '~> 3.2'
 gem 'sqlite3'
 
 template 'activerecord/models.rb', 'models.rb'
+
 require_models_code = <<-CODE
   # Enable code reloading for models
   require_dependency 'models'
@@ -23,6 +24,11 @@ application <<-CODE
     }
   end
 CODE
+
+require_active_record = <<-CODE
+require "active_record/railtie"
+CODE
+inject_into_file 'boot.rb', "\n#{require_active_record}", :after => /require ['"]action_controller\/railtie['"]/
 
 template 'activerecord/migrate', 'migrate'
 chmod 'migrate', 0755

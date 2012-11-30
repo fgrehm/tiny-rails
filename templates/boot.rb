@@ -6,6 +6,8 @@ Bundler.setup :default
 require "rails"
 require "rails/all"
 
+require "action_controller/railtie"
+
 Bundler.require :default
 
 class TinyRailsApp < Rails::Application
