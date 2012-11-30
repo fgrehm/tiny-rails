@@ -14,7 +14,7 @@ require 'pathname'
 path = Pathname.new(config['database'])
 file = path.absolute? ? path.to_s : File.join(Rails.root, path)
 
-exit 0 if File.exist?(file) && confirm_drop_db?
+exit 0 if File.exist?(file) && !confirm_drop_db?
 
 # "Drop" database
 FileUtils.rm(file) if File.exist?(file)
