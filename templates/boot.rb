@@ -3,8 +3,8 @@ $:.unshift Dir.pwd
 require 'bundler'
 Bundler.setup :default
 
+require "tiny-rails"
 require "rails"
-require "rails/all"
 
 require "action_controller/railtie"
 
