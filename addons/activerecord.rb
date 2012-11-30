@@ -25,10 +25,7 @@ application <<-CODE
   end
 CODE
 
-require_active_record = <<-CODE
-require "active_record/railtie"
-CODE
-inject_into_file 'boot.rb', "\n#{require_active_record}", :after => /require ['"]action_controller\/railtie['"]/
+inject_into_file 'boot.rb', "\nrequire \"active_record/railtie\"", :after => /require ['"]action_controller\/railtie['"]/
 
 template 'activerecord/migrate', 'migrate'
 chmod 'migrate', 0755

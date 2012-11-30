@@ -92,7 +92,7 @@ describe TinyRails::Actions do
     let(:boot_rb) { File.read 'boot.rb' }
 
     before do
-      action :create_file, 'boot.rb', "class TinyRailsApp\n  config.secret_token = 'something'\nend"
+      action :create_file, 'boot.rb', "require \"action_controller/railtie\"\nclass TinyRailsApp\n  config.secret_token = 'something'\nend"
       action :enable_asset_pipeline!
     end
 
@@ -106,6 +106,10 @@ describe TinyRails::Actions do
 
     it 'appends application root folder to assets path' do
       boot_rb.should =~ /^  config\.assets\.paths << File\.dirname\(__FILE__\)$/
+    end
+
+    it 'require sprockets railtie' do
+      boot_rb.should =~ /^require "sprockets\/railtie"/
     end
 
     it 'does not duplicate configs' do

@@ -78,6 +78,7 @@ module TinyRails
   config.assets.debug   = true
   config.assets.paths << File.dirname(__FILE__)
 CONFIG
+      inject_into_file 'boot.rb', "\nrequire \"sprockets/railtie\"", :after => /require ['"]action_controller\/railtie['"]/
     end
 
     def addon(path)
