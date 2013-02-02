@@ -16,7 +16,8 @@ Install it using:
 Although the generated application code could be used on a production server,
 the idea is to try to give you a really basic application to try out new Rails
 gems, create spikes and to provide an isolated small Rails environment for
-reproducing bugs to support bug reports.
+reproducing bugs to support bug reports and / or to [demo](https://github.com/fgrehm/letter_opener_web#try-it-out)
+your Rails engine.
 
 You could also use this to create a single page application with Rails
 features like code reloading and the asset pipeline without having to set up
