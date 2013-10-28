@@ -1,7 +1,12 @@
 # TinyRails
 
 Scaffold for tiny Rails apps based on José Valim's Rails Lightweight Stack
-[code](https://gist.github.com/1942658)
+[code](https://gist.github.com/1942658).
+
+
+### DEPRECATED
+
+I'm no longer maintaing this and if you are looking into a "lightweight Rails stack" these days you probably want to use [rails-api](https://github.com/rails-api/rails-api)
 
 
 ## Installation
